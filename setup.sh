@@ -64,6 +64,16 @@ else
     echo "${SAMPLE_FILE} already exists. Skipping creation."
 fi
 
+# Create a notes file
+NOTES_FILE="${DAY_DIR}/notes${DAY}.md"
+if [ ! -f "$NOTES_FILE" ]; then
+    echo "Creating ${NOTES_FILE}..."
+    touch "$NOTES_FILE"
+    echo "Notes markdown file created."
+else
+    echo "${NOTES_FILE} already exists. Skipping creation."
+fi
+
 # Fetch input data (if session cookie exists)
 INPUT_FILE="${DAY_DIR}/input${DAY}.txt"
 if [ -f "$SESSION_FILE" ]; then
