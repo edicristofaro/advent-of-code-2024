@@ -1,18 +1,20 @@
 #!/bin/bash
 
 # Advent of Code Daily Challenge Setup Script
-# Created with Claude. This will be the only AI-generated content for this challenge.
-# No using AI to solve daily problems.
 
-# Check if a day number is provided
+# Path to session cookie file. Don't check this into github.
+SESSION_FILE="${HOME}/.config/aoc_session"
+
+# Day number from command line argument
 if [ $# -eq 0 ]; then
     echo "Please provide a day number"
     echo "Usage: $0 <day_number>"
     exit 1
 fi
 
-# Day number from command line argument
+# Day number and current year
 DAY=$1
+YEAR=$(date +%Y)
 
 # Create day-specific directory
 DAY_DIR="day${DAY}"
@@ -62,14 +64,52 @@ else
     echo "${SAMPLE_FILE} already exists. Skipping creation."
 fi
 
-# Create actual input file
+# Fetch input data (if session cookie exists)
 INPUT_FILE="${DAY_DIR}/input${DAY}.txt"
-if [ ! -f "$INPUT_FILE" ]; then
-    echo "Creating ${INPUT_FILE}..."
-    touch "$INPUT_FILE"
-    echo "Input file created."
+if [ -f "$SESSION_FILE" ]; then
+    # Read session cookie, trimming any whitespace
+    AOC_SESSION=$(tr -d '[:space:]' < "$SESSION_FILE")
+
+    # Only attempt download if session cookie is not empty
+    if [ ! -z "$AOC_SESSION" ] && [ ! -f "$INPUT_FILE" ] || [ ! -s "$INPUT_FILE" ]; then
+        echo "Fetching input data for Day ${DAY}..."
+        curl "https://adventofcode.com/${YEAR}/day/${DAY}/input" \
+            --compressed \
+            -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" \
+            -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" \
+            -H "Accept-Language: en-US,en;q=0.5" \
+            -H "Accept-Encoding: gzip, deflate, br, zstd" \
+            -H "Referer: https://adventofcode.com/${YEAR}/day/${DAY}" \
+            -H "DNT: 1" \
+            -H "Connection: keep-alive" \
+            -H "Cookie: session=${AOC_SESSION}" \
+            -H "Upgrade-Insecure-Requests: 1" \
+            -H "Sec-Fetch-Dest: document" \
+            -H "Sec-Fetch-Mode: navigate" \
+            -H "Sec-Fetch-Site: same-origin" \
+            -H "Priority: u=0, i" \
+            -H "TE: trailers" \
+            -o "$INPUT_FILE"
+        
+        # Check if input was successfully downloaded
+        if [ $? -eq 0 ] && [ -s "$INPUT_FILE" ]; then
+            echo "Input data downloaded successfully."
+        else
+            echo "Failed to download input data."
+            rm -f "$INPUT_FILE"
+            touch "$INPUT_FILE"
+        fi
+    else
+        if [ -f "$INPUT_FILE" ]; then
+            echo "Input file already exists. Skipping download."
+        else
+            echo "No session cookie found. Skipping input data download."
+        fi
+    fi
 else
-    echo "${INPUT_FILE} already exists. Skipping creation."
+    echo "No session cookie file found. Skipping input data download."
+    # Create an empty input file if it doesn't exist
+    touch "$INPUT_FILE"
 fi
 
 echo "Advent of Code setup for Day ${DAY} complete!"

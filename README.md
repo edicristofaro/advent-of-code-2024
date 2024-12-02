@@ -44,6 +44,23 @@ day1/sample1.txt
 ```
 The script will also insert some basic boilerplate into the `.py` file since every problem requires you to read in the input data and solve the two parts. However, you may want to modify this to handle the inputs based on the format and problem of the day. You can see an example in my `day1/` solution versus the setup script boilerplate.
 
+You can optionally grab your session token once you're logged into Advent of Code, store it, and let the script grab the daily input data as well. This part is optional and the script will skip this step if a token isn't present.
+
+```
+# Create the directory if it doesn't exist
+mkdir -p ~/.config
+
+# Create the session file (replace with your actual session cookie)
+echo "your_session_cookie_here" > ~/.config/aoc_session
+
+# Restrict permissions (recommended for sensitive files)
+chmod 600 ~/.config/aoc_session
+
+# It's not a good idea to check secrets into github, so -
+# In your project's .gitignore, add:
+echo ".config/aoc_session" >> .gitignore
+```
+
 
 ## Should I use AI?
 
