@@ -64,7 +64,14 @@ echo ".config/aoc_session" >> .gitignore
 
 ## Should I use AI?
 
-No. Well, you can and I don't care if you do, but my objective is to learn. None of my solutions checked in here will have any AI generated code. I'd suggest in advance that you not use Cursor (or a similar LLM-integrated IDE), and/or disable Copilot before starting. The code completion will often give you the solution, which I presume you don't want.
+Try not to. At least, if you're a beginner and you're learning the basic concepts and syntax and such, try to stick to asking very specific questions about the component you're implementing, rather than feeding the LLM the question prompt itself. For example:
+
+- Good: "How do I loop over the elements of a list and do something with each of them?"
+- Not Good: "How do I merge two lists together into pairs of elements and sum the total difference between each pair?"
+
+This way, you're still thinking through your own program flow, data structures, and algorithms, and deciding how you generally want to approach the problem. At most, the LLM is giving you some language help. But if you're not a beginner, I suggest not using any AI tools at all. Google for syntax, but try and solve the problem entirely by yourself.
+
+None of my solutions checked in here will have any AI generated code. I'd suggest in advance that you not use Cursor (or a similar LLM-integrated IDE), and/or disable Copilot before starting. The code completion will often give you the solution, which I presume you don't want.
 
 ## I'm stuck and really want a hint!
 
