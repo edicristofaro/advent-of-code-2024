@@ -40,7 +40,9 @@ def part2(input_data):
 def main():
     # Read input
     with open('input${DAY}.txt', 'r') as f:
-        input_data = f.read().strip()
+        input_data = f.readlines()
+    
+    input_data = [i.replace("\n","") for i in input_data]
     
     # Solve and print results
     print("Part 1:", part1(input_data))
