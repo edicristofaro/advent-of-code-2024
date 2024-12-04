@@ -1,6 +1,6 @@
 # Advent of Code 2024
 
-These are my attempts to solve the daily problems at https://adventofcode.com/. Feel free to follow along, use my code, tell me I'm doing it wrong, whatever.
+These are my attempts to solve the daily problems at https://adventofcode.com/. Feel free to follow along, use my code, tell me I'm doing it wrong, whatever. If you're a beginner and want to try it yourself or follow along, you can keep reading for some basic set up instructions and unsolicited advice. If you know what you're doing already, you'll probably finish more problems than I will and also don't need the rest of the readme.
 
 ## Initial Setup
 
