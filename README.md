@@ -1,6 +1,6 @@
 # Advent of Code 2024
 
-These are my attempts to solve the daily problems at https://adventofcode.com/. Feel free to follow along, use my code, tell me I'm doing it wrong, whatever.
+These are my attempts to solve the daily problems at https://adventofcode.com/. Feel free to follow along, use my code, tell me I'm doing it wrong, whatever. If you're a beginner and want to try it yourself or follow along, you can keep reading for some basic set up instructions and unsolicited advice. If you know what you're doing already, you'll probably finish more problems than I will and also don't need the rest of the readme.
 
 ## Initial Setup
 
@@ -40,6 +40,7 @@ Which will create:
 ```
 day1/day1.py
 day1/input1.txt
+day1/notes1.md
 day1/sample1.txt
 ```
 The script will also insert some basic boilerplate into the `.py` file since every problem requires you to read in the input data and solve the two parts. However, you may want to modify this to handle the inputs based on the format and problem of the day. You can see an example in my `day1/` solution versus the setup script boilerplate.
@@ -75,4 +76,4 @@ None of my solutions checked in here will have any AI generated code. I'd sugges
 
 ## I'm stuck and really want a hint!
 
-The Advent of Code subreddit is often helpful: https://old.reddit.com/r/adventofcode/ - just be careful if you don't want to see a full solution. You can also use this repo, although if there's no solution here, I'm probably stuck too.
+The Advent of Code subreddit is often helpful: https://old.reddit.com/r/adventofcode/ - just be careful if you don't want to see a full solution. You can also use this repo, although if there's no solution here, I'm probably stuck too. I usually write down a few notes after I've finished the problem, and you can read those in the `notes.md` file for that given day. It may contain some very specific information and I can't promise it won't point you directly at a solution, so try to hold off on outside resources unless you're truly stuck.
