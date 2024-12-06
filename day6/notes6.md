@@ -1,2 +1,3 @@
 - I spent way too much time on part 2 wondering why I wasn't getting any infinite looping, until I realized I was modifying a copy of my grid with an obstacle to test, but I was collision-checking against the original unmodified grid. doh!
 - I'm sure there's a better way to detect a loop than to count iterations past some impossibly high number. This was really slow on the full input data due to the grid size. I couldn't think of it though, and if it's stupid and it works, ...
+- The grid could have been more sparse. I didn't need the empty spaces in the key set for anything. At least I didn't try to do it with lists again?

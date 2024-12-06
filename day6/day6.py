@@ -12,8 +12,6 @@ def part1(grid, grid_size, start_pos):
 
 
 def part2(grid, grid_size, start_pos):
-    pos = start_pos
-    orientation = "U"  # Up, Down, Left, Right
     obstacles = []
 
     for x in range(0, grid_size):
@@ -72,7 +70,7 @@ def collision_ahead(orientation, grid, pos):
 
 def main():
     # Read input
-    with open("input6.txt", "r") as f:
+    with open("sample6.txt", "r") as f:
         input_data = f.readlines()
 
     input_data = [i.replace("\n", "") for i in input_data]
