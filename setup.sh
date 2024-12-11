@@ -57,7 +57,7 @@ else
 fi
 
 # Create sample input file
-SAMPLE_FILE="${DAY_DIR}/sample${DAY}.txt"
+SAMPLE_FILE="${DAY_DIR}/sample.txt"
 if [ ! -f "$SAMPLE_FILE" ]; then
     echo "Creating ${SAMPLE_FILE}..."
     touch "$SAMPLE_FILE"
@@ -67,7 +67,7 @@ else
 fi
 
 # Create a notes file
-NOTES_FILE="${DAY_DIR}/notes${DAY}.md"
+NOTES_FILE="${DAY_DIR}/notes.md"
 if [ ! -f "$NOTES_FILE" ]; then
     echo "Creating ${NOTES_FILE}..."
     touch "$NOTES_FILE"
@@ -77,7 +77,7 @@ else
 fi
 
 # Fetch input data (if session cookie exists)
-INPUT_FILE="${DAY_DIR}/input${DAY}.txt"
+INPUT_FILE="${DAY_DIR}/input.txt"
 if [ -f "$SESSION_FILE" ]; then
     # Read session cookie, trimming any whitespace
     AOC_SESSION=$(tr -d '[:space:]' < "$SESSION_FILE")
