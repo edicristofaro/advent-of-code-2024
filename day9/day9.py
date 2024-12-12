@@ -41,12 +41,12 @@ def part2(input_data):
 
     reversed_files = sorted([k for k in files.keys()], reverse=True)
 
-    # we aren't dealing with consecutive spaces that should combine into one, probably
+    # we aren't dealing with consecutive spaces that should combine into one, probably (Note to past self: This was not the problem)
     for id in reversed_files:
-        spaces = space_scan(spaces)
+        spaces = sorted(spaces, key=lambda x: x[0])  # space_scan(spaces)
         file_len = files[id]["size"]
         for s, space in enumerate(spaces):
-            if space[1] >= file_len:
+            if space[1] >= file_len and space[0] < files[id]["pos"]:
                 temp_space = spaces.pop(s)
                 files[id]["pos"] = temp_space[0]
                 if temp_space[1] >= file_len:
@@ -54,7 +54,8 @@ def part2(input_data):
                         temp_space[0] + file_len,
                         temp_space[1] - file_len,
                     ]
-                    spaces.append(modified_space)
+                    if modified_space[1] > 0:
+                        spaces.append(modified_space)
                 break
 
     for k, v in files.items():
@@ -65,6 +66,8 @@ def part2(input_data):
 
 
 def space_scan(spaces):
+    # checks for contiguous space entries and combines them
+    # this turned out to be entirely unnecessary
     space_len = len(spaces)
     for i in range(1, len(spaces)):
         if len(spaces) > i:
@@ -72,9 +75,11 @@ def space_scan(spaces):
                 spaces[i - 1][1] = spaces[i][1] + spaces[i - 1][1]
                 spaces.pop(i)
     spaces = sorted(spaces, key=lambda x: x[0])
+
     if space_len == len(spaces):
         return spaces
     else:
+        print("rescan")
         spaces = space_scan(spaces)
 
     return spaces
